@@ -1,0 +1,22 @@
+.fightZone
+{
+	background-image: url("/images/arrierePlant.jpg");
+	width: 1024px;
+	height: 576px;
+
+}
+.player
+{
+	width:490px; 
+	height:780px;
+	background-image: url("/images/seb1/droite/garde.png");
+
+}
+.playerOneSprite
+{
+	
+}
+rect
+{
+	
+}

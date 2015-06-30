@@ -1,0 +1,161 @@
+{% extends 'layout.html' %}
+
+{% block title %}JSFight{% endblock %}
+
+{% block head %}
+  {% parent %}
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/stylesheets/chat.css">
+  <link rel="stylesheet" href="/stylesheets/fight.css">
+  <link rel="stylesheet" href="/images/playerOne.css">
+  
+  
+ 
+
+  
+  
+
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1 class="text-center">JSFight - Home</h1>
+</div>
+<div class="row">
+  <input type="text" value="{{ playerOne }}" id="playerOne" hidden>
+  <input type="text" value="{{ playerTwo }}" id="playerTwo" hidden>
+  <input type="text" value="{{ pseudo }}" id="pseudo" hidden>
+  <!--fight place-->
+  <div class="col-xs-12 col-md-8" id="fightZone">
+    <svg class="fightZone" >
+
+      
+        <image xlink:href="/images/seb1/droite/garde.png"   x="60" y="376" width="80" height="200"  class="player playerOneSprite" id="playerOneSprite"/>
+        <image xlink:href="/images/seb2/gauche/garde.png" x="880" y="376" width="80" height="200"   class="player playerTwoSprite" id="playerTwoSprite"/>
+
+        <image xlink:href="/images/fireBall/droite.png"   x="60" y="-50" width="40" height="20"  class="" id="fireBall1"/>
+        <image xlink:href="/images/fireBall/gauche.png"   x="880" y="-50" width="40" height="20"  class="" id="fireBall2"/>
+
+
+        <rect id="seb1Life" style="fill:green" x="10" y="10" width="400" height="30"/>
+        <rect id="seb2Life" style="fill:green" x="614" y="10" width="400" height="30"/>
+
+
+        <!--chargement des immages à l'avance (elle sont chargée avant le js, donc pas de conflit)-->
+        <!--seb1 -->
+          <!--droite -->
+             <image xlink:href="/images/seb1/droite/victoire1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite"/>
+             <image xlink:href="/images/seb1/droite/saut.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/preparation_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/envoie_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/deplacement2.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+            <image xlink:href="/images/seb1/droite/deplacement1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/coup_de_poing.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/coup_de_pied.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/couch.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/couch_bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/droite/bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+           <!--gauche-->
+              <image xlink:href="/images/seb1/gauche/victoire1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite"/>
+             <image xlink:href="/images/seb1/gauche/saut.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" id="playerOneSprite"/>
+             <image xlink:href="/images/seb1/gauche/preparation_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/envoie_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/deplacement2.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+            <image xlink:href="/images/seb1/gauche/deplacement1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/coup_de_poing.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/coup_de_pied.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/couch.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/couch_bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb1/gauche/bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+         <!--seb2 -->
+            <!--droite -->
+             <image xlink:href="/images/seb2/droite/victoire1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite"/>
+             <image xlink:href="/images/seb2/droite/saut.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/preparation_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/envoie_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/deplacement2.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+            <image xlink:href="/images/seb2/droite/deplacement1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/coup_de_poing.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/coup_de_pied.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/couch.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/couch_bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/droite/bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+           <!--gauche-->
+              <image xlink:href="/images/seb2/gauche/victoire1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite"/>
+             <image xlink:href="/images/seb2/gauche/saut.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/preparation_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/envoie_boule_de_feu.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/deplacement2.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+            <image xlink:href="/images/seb2/gauche/deplacement1.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/coup_de_poing.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/coup_de_pied.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/couch.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/couch_bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+             <image xlink:href="/images/seb2/gauche/bloc.png"   x="60" y="-376" width="80" height="200"  class="player playerOneSprite" />
+
+      
+
+    </svg>
+
+  </div>
+
+  <!-- chat -->
+  <div id="formFinDePartie">
+
+  </div>
+  <br/>
+
+  <div class="col-xs-6 col-md-4">
+   
+    <div class="">
+      <div class="chat-box-div">
+          <div class="chat-box-head">
+              CHAT
+                  
+          </div>
+          <div class="panel-body chat-box-main" >
+              <div id="zoneDeChat">
+
+              </div>
+          </div>
+          <div class="chat-box-footer">
+              <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter Text Here..." id="messageAEnvoyer">
+                  <span class="input-group-btn">
+                      <button class="btn btn-info" type="button" onclick="sendMessage()">SEND</button>
+                  </span>
+              </div>
+          </div>
+
+      </div>
+
+    </div>
+    <div>
+      <h2>
+        Controls
+      </h2>
+      <ul>
+        <li>Move: direction arrows</li>
+        <li>Punsh: key "a"</li>
+        <li>Kick: key "z"</li>
+        <li>Fireball: key "e"</li>
+        <li>Bloc: key "r"</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div id="formVictoire" hidden>
+  <a href="/resultat/victoire"><button class="btn btn-success col-md-4">Continuer</button></a>
+</div>
+<div id="formDefaite" hidden>
+  <a href="/resultat/defaite"><button class="btn btn-success col-md-4">Continuer</button></a>
+</div>
+
+ <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script type="text/javascript" src="/javascripts/socketio/chat.js"></script>
+  <script type="text/javascript" src="/javascripts/socketio/combat.js"></script>
+
+{% endblock %}
